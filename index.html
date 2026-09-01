@@ -190,10 +190,14 @@ main{height:calc(100vh - 101px);overflow:auto;background:#F1F2F4;padding:20px}
 
 /* ---------- C:split ---------- */
 #panelC.expanded{width:920px}
-.slim-bar{display:flex;align-items:center;gap:10px;background:var(--gray-100);border-radius:10px;padding:10px 12px 10px 16px;flex:none}
+.slim-bar{display:flex;align-items:center;gap:10px;background:var(--gray-100);border-radius:10px;padding:12px 16px;flex:none}
 .slim-bar b{font-size:13.5px;font-weight:600}
-.collapse-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);background:#fff;border-radius:6px;padding:6px 10px;font-size:12px;color:var(--text-2);margin-left:auto}
-.collapse-btn:hover{background:var(--muted)}
+.list-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;flex:none}
+.lt-label{font-size:12px;color:var(--text-2)}
+.detail-toggle{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--border);border-radius:8px;height:32px;padding:0 12px;font-size:12.5px;font-weight:500;color:var(--text-1);background:#fff;transition:.12s}
+.detail-toggle:hover{background:var(--muted)}
+.detail-toggle.active{background:var(--brand-tint);border-color:var(--brand);color:var(--brand)}
+.c-detail .dp-cap{font-size:11px;font-weight:600;letter-spacing:.6px;color:var(--text-2)}
 .split{flex:1;display:flex;gap:16px;min-height:0;margin-top:14px;margin-bottom:20px}
 .c-left{width:352px;flex:none;display:flex;flex-direction:column;min-height:0}
 .c-left .filters-grid{grid-template-columns:1fr 1fr}
@@ -355,9 +359,6 @@ footer{position:fixed;right:16px;bottom:10px;font-size:11px;color:#8b8b98;z-inde
       <div class="panel-hd">
         <h2>Question Settings</h2>
         <p>Adjust the question settings to tailor the experience for your audience.</p>
-        <button class="expand-btn" id="expandC" title="Expand panel">
-          <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M216,48V96a8,8,0,0,1-16,0V56H160a8,8,0,0,1,0-16h48A8,8,0,0,1,216,48ZM96,200H56V160a8,8,0,0,0-16,0v48a8,8,0,0,0,8,8H96a8,8,0,0,0,0-16Zm112-48a8,8,0,0,0-8,8v40H160a8,8,0,0,0,0,16h48a8,8,0,0,0,8-8V160A8,8,0,0,0,208,152ZM48,104a8,8,0,0,0,8-8V56H96a8,8,0,0,0,0-16H48a8,8,0,0,0-8,8V96A8,8,0,0,0,48,104Z"/></svg>
-        </button>
         <button class="x" title="Close">✕</button>
       </div>
 
@@ -371,24 +372,34 @@ footer{position:fixed;right:16px;bottom:10px;font-size:11px;color:#8b8b98;z-inde
           </div>
         </div>
         <div class="seg-tabs"><i class="on">Standards</i><i>Difficulty</i></div>
-        <div class="desc-line">Select standards and skills that align with this question. 点右上 <b>⛶</b> 展开更大的浏览视图。</div>
+        <div class="desc-line">Select standards and skills that align with this question.</div>
         <div class="search-box">
           <svg width="15" height="15" viewBox="0 0 256 256" fill="currentColor"><path d="M229.7,218.3l-43.3-43.2a92.2,92.2,0,1,0-11.3,11.3l43.2,43.3a8.2,8.2,0,0,0,11.4,0A8.1,8.1,0,0,0,229.7,218.3ZM40,112a72,72,0,1,1,72,72A72.1,72.1,0,0,1,40,112Z"/></svg>
           <input type="text" placeholder="Search" data-search="c1">
         </div>
-        <div class="std-list" id="listC1"></div>
+        <div class="list-toolbar">
+          <span class="lt-label">16 standards</span>
+          <button class="detail-toggle" data-ctoggle title="Show the details pane for standards">
+            <svg width="14" height="14" viewBox="0 0 256 256" fill="currentColor"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM40,56H152V200H40Zm176,144H168V56h48V200Z"/></svg>
+            Show details
+          </button>
+        </div>
+        <div class="std-list" id="listC1" style="margin-top:10px"></div>
       </div>
 
       <div class="panel-body" id="cExpanded" style="display:none">
         <div class="slim-bar">
           <b>Q1 · Multiple Choice</b>
           <span class="badge tag-badge-c" style="display:none">1 tagged</span>
-          <button class="collapse-btn" id="collapseC">
-            <svg width="13" height="13" viewBox="0 0 256 256" fill="currentColor"><path d="M96,48V96a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H80V48a8,8,0,0,1,16,0ZM216,152H168a8,8,0,0,0-8,8v48a8,8,0,0,0,16,0V168h40a8,8,0,0,0,0-16Zm-56-48h48a8,8,0,0,0,0-16H176V48a8,8,0,0,0-16,0V96A8,8,0,0,0,160,104ZM88,152H40a8,8,0,0,0,0,16H80v40a8,8,0,0,0,16,0V160A8,8,0,0,0,88,152Z"/></svg>
-            Collapse
+        </div>
+        <div class="list-toolbar">
+          <span class="lt-label">16 standards · select on the left, review details on the right</span>
+          <button class="detail-toggle active" data-ctoggle title="Hide the details pane for standards">
+            <svg width="14" height="14" viewBox="0 0 256 256" fill="currentColor"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM40,56H152V200H40Zm176,144H168V56h48V200Z"/></svg>
+            Hide details
           </button>
         </div>
-        <div class="split">
+        <div class="split" style="margin-top:10px">
           <div class="c-left">
             <div class="search-box" style="margin-top:0">
               <svg width="15" height="15" viewBox="0 0 256 256" fill="currentColor"><path d="M229.7,218.3l-43.3-43.2a92.2,92.2,0,1,0-11.3,11.3l43.2,43.3a8.2,8.2,0,0,0,11.4,0A8.1,8.1,0,0,0,229.7,218.3ZM40,112a72,72,0,1,1,72,72A72.1,72.1,0,0,1,40,112Z"/></svg>
@@ -458,7 +469,7 @@ const X_SVG = '<svg width="10" height="10" viewBox="0 0 256 256" fill="currentCo
 const HINTS = {
   a:'试一试：<b>向下滚动列表</b> → 头部折叠成摘要条吸顶；点 <b>Filters</b> 展开浮层（不推列表）；滚回顶部恢复。点卡片可勾选。',
   b:'试一试：点 <b>Browse Standards</b> 打开全屏浏览器；点卡片选择，<b>Done</b> 回填面板；可再次打开继续编辑。',
-  c:'试一试：点面板右上角 <b>⛶ 展开</b>按钮加宽抽屉；左侧点行看详情、勾 skills；<b>Collapse</b> 收起后状态同步。'
+  c:'试一试：点列表右上角 <b>Show details</b> 展开「列表 + 详情」分栏；左侧点行、右侧勾 skills；<b>Hide details</b> 收起后状态同步。'
 };
 
 /* ================= backdrop ================= */
@@ -683,6 +694,7 @@ function renderC(){
   const s = STANDARDS[focusC];
   const sset = skillSel(focusC);
   detailC.innerHTML = `
+    <div class="dp-cap">STANDARD DETAILS</div>
     <div class="bl">${badgeHtml(s.code)}</div>
     <div class="ds">${s.desc}</div>
     <hr>
@@ -707,17 +719,15 @@ function toggleC(i){
   focusC = i;
   renderC();
 }
-document.getElementById('expandC').addEventListener('click', () => {
-  panelC.classList.add('expanded');
-  document.getElementById('cDefault').style.display = 'none';
-  document.getElementById('cExpanded').style.display = 'flex';
-  document.getElementById('cExpanded').style.flexDirection = 'column';
-});
-document.getElementById('collapseC').addEventListener('click', () => {
-  panelC.classList.remove('expanded');
-  document.getElementById('cExpanded').style.display = 'none';
-  document.getElementById('cDefault').style.display = 'flex';
-});
+function setCMode(expanded){
+  panelC.classList.toggle('expanded', expanded);
+  document.getElementById('cDefault').style.display = expanded ? 'none' : 'flex';
+  const ex = document.getElementById('cExpanded');
+  ex.style.display = expanded ? 'flex' : 'none';
+  if (expanded) ex.style.flexDirection = 'column';
+}
+document.querySelectorAll('[data-ctoggle]').forEach(b =>
+  b.addEventListener('click', () => setCMode(!panelC.classList.contains('expanded'))));
 
 /* ================= search ================= */
 const SEARCH_TARGETS = { a: '#listA .std-item', b: '#gridB .m-card', c1: '#listC1 .std-item', c2: '#listC2 .c-row' };
