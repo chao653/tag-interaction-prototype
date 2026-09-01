@@ -202,7 +202,7 @@ main{height:100vh;overflow:auto;background:#F1F2F4;padding:20px}
 .c-controls{display:flex;gap:8px;margin-top:12px;flex:none}
 .c-controls .search-box{margin-top:0;width:320px;flex:none}
 .c-controls .sel{flex:1}
-.browse-box{flex:1;display:flex;min-height:0;margin-top:12px;margin-bottom:20px;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.browse-box{flex:1;display:flex;min-height:0;margin-top:10px;margin-bottom:20px;border:1px solid var(--border);border-radius:8px;overflow:hidden}
 .c-list{width:352px;flex:none;min-height:0;overflow-y:auto;border-right:1px solid var(--border)}
 .c-row{display:flex;align-items:center;gap:8px;padding:11px 12px;border-bottom:1px solid var(--border);cursor:pointer;background:#fff}
 .c-row:last-child{border-bottom:none}
@@ -390,13 +390,6 @@ footer{position:fixed;right:16px;bottom:10px;font-size:11px;color:#8b8b98;z-inde
           <b>Q1 · Multiple Choice</b>
           <span class="badge tag-badge-c" style="display:none">1 tagged</span>
         </div>
-        <div class="list-toolbar">
-          <span class="lt-label">16 standards · select on the left, review details on the right</span>
-          <button class="detail-toggle active" data-ctoggle title="Hide the details pane for standards">
-            <svg width="14" height="14" viewBox="0 0 256 256" fill="currentColor"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM40,56H152V200H40Zm176,144H168V56h48V200Z"/></svg>
-            Hide details
-          </button>
-        </div>
         <div class="c-controls">
           <div class="search-box">
             <svg width="15" height="15" viewBox="0 0 256 256" fill="currentColor"><path d="M229.7,218.3l-43.3-43.2a92.2,92.2,0,1,0-11.3,11.3l43.2,43.3a8.2,8.2,0,0,0,11.4,0A8.1,8.1,0,0,0,229.7,218.3ZM40,112a72,72,0,1,1,72,72A72.1,72.1,0,0,1,40,112Z"/></svg>
@@ -406,6 +399,13 @@ footer{position:fixed;right:16px;bottom:10px;font-size:11px;color:#8b8b98;z-inde
           <div class="sel"><select><option>Subject</option><option>Computational Thinking</option></select></div>
           <div class="sel"><select><option>Grade</option><option>6–8</option></select></div>
           <div class="sel"><select><option>Concept</option><option>Algorithms</option></select></div>
+        </div>
+        <div class="list-toolbar">
+          <span class="lt-label">16 standards · select on the left, review details on the right</span>
+          <button class="detail-toggle active" data-ctoggle title="Hide the details pane for standards">
+            <svg width="14" height="14" viewBox="0 0 256 256" fill="currentColor"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM40,56H152V200H40Zm176,144H168V56h48V200Z"/></svg>
+            Hide details
+          </button>
         </div>
         <div class="browse-box">
           <div class="c-list" id="listC2"></div>
