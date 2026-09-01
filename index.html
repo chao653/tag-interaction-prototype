@@ -144,6 +144,9 @@ main{height:100vh;overflow:auto;background:#F1F2F4;padding:20px}
 .std-item.on{background:var(--brand-tint)}
 .std-item.on:hover{background:#EDE6FD}
 
+.caret-btn{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:6px;color:#9CA3AF;cursor:pointer;flex:none;transition:.12s}
+.caret-btn:hover{background:var(--muted);color:var(--text-1)}
+.caret-btn.back svg{transform:rotate(180deg)}
 .cbx{width:16px;height:16px;border:1.5px solid #b9b9c2;border-radius:4px;flex:none;display:flex;align-items:center;justify-content:center;background:#fff;transition:.12s;color:#fff}
 .cbx svg{opacity:0}
 .cbx.on{background:var(--brand);border-color:var(--brand)}
@@ -497,7 +500,7 @@ const X_SVG = '<svg width="10" height="10" viewBox="0 0 256 256" fill="currentCo
 const HINTS = {
   a:'<b>方案 A · 滚动折叠吸顶</b>：向下滚动列表 → 头部折叠成摘要条吸顶；点 <b>Filters</b> 展开浮层（不推列表）；滚回顶部恢复。点卡片可勾选。',
   b:'<b>方案 B · 全屏弹窗浏览器</b>：点 <b>Browse Standards</b> 打开全屏浏览器；点卡片选择，<b>Done</b> 回填面板；可再次打开继续编辑。',
-  c:'<b>方案 C · 抽屉加宽分栏</b>：默认态筛选收在搜索框右侧的 <b>Filters</b> 下拉里；点 <b>Show details</b> 展开「列表 + 详情」分栏后四个筛选全部平铺；左侧点行、右侧勾 skills，<b>Hide details</b> 收起后状态同步。'
+  c:'<b>方案 C · 抽屉加宽分栏</b>：点卡片上的 <b>›</b> 或 <b>Show details</b> 展开「列表 + 详情」分栏（箭头反向后点 <b>‹</b> 收起）；默认态筛选收在搜索框右侧 <b>Filters</b> 下拉里，展开后四个筛选全部平铺；左侧点行、右侧勾 skills，收起后状态同步。'
 };
 
 /* ================= backdrop ================= */
@@ -718,8 +721,14 @@ function renderC(){
         <div class="bl">${badgeHtml(s.code)}<span style="font-size:11.5px;color:var(--text-2)">${skillCountLabel(skillSel(i).size, s.skills.length)}</span></div>
         <div class="ds">${s.desc}</div>
       </div>
-      <div class="side">${CARET_R}<span class="cbx${on ? ' on' : ''}">${CHECK_SVG}</span></div>`;
+      <div class="side"><span class="caret-btn" title="Show details">${CARET_R}</span><span class="cbx${on ? ' on' : ''}">${CHECK_SVG}</span></div>`;
     item.addEventListener('click', () => { toggleC(i); });
+    item.querySelector('.caret-btn').addEventListener('click', e => {
+      e.stopPropagation();
+      focusC = i;
+      setCMode(true);
+      renderC();
+    });
     listC1.appendChild(item);
   });
   applySearch('c1');
@@ -730,12 +739,18 @@ function renderC(){
     const row = document.createElement('div');
     row.className = 'c-row' + (i === focusC ? ' focus' : '');
     row.dataset.q = (s.code + ' ' + s.desc).toLowerCase();
-    row.innerHTML = `<span class="badge">${s.code}</span><span class="sub">${SUBJECT}</span><span class="cbx${selC.has(i) ? ' on' : ''}">${CHECK_SVG}</span>`;
+    row.innerHTML = `<span class="badge">${s.code}</span><span class="sub">${SUBJECT}</span><span class="caret-btn back" title="Hide details">${CARET_R}</span><span class="cbx${selC.has(i) ? ' on' : ''}">${CHECK_SVG}</span>`;
     row.addEventListener('click', e => {
       if (e.target.closest('.cbx')) { toggleC(i); return; }
       focusC = i; renderC();
     });
     row.querySelector('.cbx').addEventListener('click', e => { e.stopPropagation(); toggleC(i); });
+    row.querySelector('.caret-btn').addEventListener('click', e => {
+      e.stopPropagation();
+      focusC = i;
+      setCMode(false);
+      renderC();
+    });
     listC2.appendChild(row);
   });
   applySearch('c2');
