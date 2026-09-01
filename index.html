@@ -121,6 +121,12 @@ main{height:100vh;overflow:auto;background:#F1F2F4;padding:20px}
 .sf-btn:hover{background:var(--muted)}
 .sf-btn.on{background:var(--brand-tint);border-color:var(--brand);color:var(--brand)}
 .sf-btn .caret{width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin-top:-3px}
+.c-search-row{display:flex;gap:8px;margin-top:12px;flex:none}
+.c-search-row .search-box{flex:1;margin-top:0}
+.sf-wrap{position:relative;flex:none}
+.sf-btn.side{position:static;transform:none;height:38px;border-radius:8px;padding:0 13px;font-size:13px;color:var(--text-1)}
+.sf-btn.side:hover{background:var(--muted)}
+.sf-btn.side.on{background:var(--brand-tint);border-color:var(--brand);color:var(--brand)}
 .sf-pop{position:absolute;top:44px;right:0;left:auto;width:300px;background:#fff;border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow-md);padding:16px;z-index:40;display:none}
 .sf-pop.open{display:block}
 .sf-pop .sel{margin-bottom:8px}
@@ -381,20 +387,24 @@ footer{position:fixed;right:16px;bottom:10px;font-size:11px;color:#8b8b98;z-inde
         </div>
         <div class="seg-tabs"><i class="on">Standards</i><i>Difficulty</i></div>
         <div class="desc-line">Select standards and skills that align with this question.</div>
-        <div class="search-box has-filter">
-          <svg width="15" height="15" viewBox="0 0 256 256" fill="currentColor"><path d="M229.7,218.3l-43.3-43.2a92.2,92.2,0,1,0-11.3,11.3l43.2,43.3a8.2,8.2,0,0,0,11.4,0A8.1,8.1,0,0,0,229.7,218.3ZM40,112a72,72,0,1,1,72,72A72.1,72.1,0,0,1,40,112Z"/></svg>
-          <input type="text" placeholder="Search" data-search="c1">
-          <button class="sf-btn" type="button">
-            <svg width="12" height="12" viewBox="0 0 256 256" fill="currentColor"><path d="M227.81,66.76l.08-.09A16,16,0,0,0,216,40H40A16,16,0,0,0,28.19,66.76l.08.09L96,139.17V216a16,16,0,0,0,24.87,13.32l32-21.34A16,16,0,0,0,160,194.66V139.17ZM144,139.17v55.49l-32,21.34V139.17L44.69,66.83l-.11-.12H211.42l-.11.12Z"/></svg>
-            Filters
-            <span class="caret"></span>
-          </button>
-          <div class="sf-pop">
-            <div class="sel"><select><option>State</option><option>ACT</option><option>Common Core</option></select></div>
-            <div class="sel"><select><option>Subject</option><option>Computational Thinking</option><option>English</option></select></div>
-            <div class="sel"><select><option>Grade</option><option>3–5</option><option>6–8</option><option>9–12</option></select></div>
-            <div class="sel"><select><option>Concept</option><option>Abstraction</option><option>Algorithms</option></select></div>
-            <div class="foot"><span class="link">Clear all</span><span style="font-size:12px;color:var(--text-2)">下拉浮层，不推列表</span></div>
+        <div class="c-search-row">
+          <div class="search-box">
+            <svg width="15" height="15" viewBox="0 0 256 256" fill="currentColor"><path d="M229.7,218.3l-43.3-43.2a92.2,92.2,0,1,0-11.3,11.3l43.2,43.3a8.2,8.2,0,0,0,11.4,0A8.1,8.1,0,0,0,229.7,218.3ZM40,112a72,72,0,1,1,72,72A72.1,72.1,0,0,1,40,112Z"/></svg>
+            <input type="text" placeholder="Search" data-search="c1">
+          </div>
+          <div class="sf-wrap">
+            <button class="sf-btn side" type="button">
+              <svg width="13" height="13" viewBox="0 0 256 256" fill="currentColor"><path d="M227.81,66.76l.08-.09A16,16,0,0,0,216,40H40A16,16,0,0,0,28.19,66.76l.08.09L96,139.17V216a16,16,0,0,0,24.87,13.32l32-21.34A16,16,0,0,0,160,194.66V139.17ZM144,139.17v55.49l-32,21.34V139.17L44.69,66.83l-.11-.12H211.42l-.11.12Z"/></svg>
+              Filters
+              <span class="caret"></span>
+            </button>
+            <div class="sf-pop">
+              <div class="sel"><select><option>State</option><option>ACT</option><option>Common Core</option></select></div>
+              <div class="sel"><select><option>Subject</option><option>Computational Thinking</option><option>English</option></select></div>
+              <div class="sel"><select><option>Grade</option><option>3–5</option><option>6–8</option><option>9–12</option></select></div>
+              <div class="sel"><select><option>Concept</option><option>Abstraction</option><option>Algorithms</option></select></div>
+              <div class="foot"><span class="link">Clear all</span><span style="font-size:12px;color:var(--text-2)">下拉浮层，不推列表</span></div>
+            </div>
           </div>
         </div>
         <div class="list-toolbar">
@@ -413,22 +423,14 @@ footer{position:fixed;right:16px;bottom:10px;font-size:11px;color:#8b8b98;z-inde
           <span class="badge tag-badge-c" style="display:none">1 tagged</span>
         </div>
         <div class="c-controls">
-          <div class="search-box has-filter" style="flex:1;width:auto">
+          <div class="search-box">
             <svg width="15" height="15" viewBox="0 0 256 256" fill="currentColor"><path d="M229.7,218.3l-43.3-43.2a92.2,92.2,0,1,0-11.3,11.3l43.2,43.3a8.2,8.2,0,0,0,11.4,0A8.1,8.1,0,0,0,229.7,218.3ZM40,112a72,72,0,1,1,72,72A72.1,72.1,0,0,1,40,112Z"/></svg>
             <input type="text" placeholder="Search" data-search="c2">
-            <button class="sf-btn" type="button">
-              <svg width="12" height="12" viewBox="0 0 256 256" fill="currentColor"><path d="M227.81,66.76l.08-.09A16,16,0,0,0,216,40H40A16,16,0,0,0,28.19,66.76l.08.09L96,139.17V216a16,16,0,0,0,24.87,13.32l32-21.34A16,16,0,0,0,160,194.66V139.17ZM144,139.17v55.49l-32,21.34V139.17L44.69,66.83l-.11-.12H211.42l-.11.12Z"/></svg>
-              Filters
-              <span class="caret"></span>
-            </button>
-            <div class="sf-pop">
-              <div class="sel"><select><option>State</option><option>ACT</option><option>Common Core</option></select></div>
-              <div class="sel"><select><option>Subject</option><option>Computational Thinking</option><option>English</option></select></div>
-              <div class="sel"><select><option>Grade</option><option>3–5</option><option>6–8</option><option>9–12</option></select></div>
-              <div class="sel"><select><option>Concept</option><option>Abstraction</option><option>Algorithms</option></select></div>
-              <div class="foot"><span class="link">Clear all</span><span style="font-size:12px;color:var(--text-2)">下拉浮层，不推列表</span></div>
-            </div>
           </div>
+          <div class="sel"><select><option>State</option><option>ACT</option><option>Common Core</option></select></div>
+          <div class="sel"><select><option>Subject</option><option>Computational Thinking</option><option>English</option></select></div>
+          <div class="sel"><select><option>Grade</option><option>3–5</option><option>6–8</option><option>9–12</option></select></div>
+          <div class="sel"><select><option>Concept</option><option>Abstraction</option><option>Algorithms</option></select></div>
         </div>
         <div class="list-toolbar">
           <span class="lt-label">16 standards · select on the left, review details on the right</span>
@@ -495,7 +497,7 @@ const X_SVG = '<svg width="10" height="10" viewBox="0 0 256 256" fill="currentCo
 const HINTS = {
   a:'<b>方案 A · 滚动折叠吸顶</b>：向下滚动列表 → 头部折叠成摘要条吸顶；点 <b>Filters</b> 展开浮层（不推列表）；滚回顶部恢复。点卡片可勾选。',
   b:'<b>方案 B · 全屏弹窗浏览器</b>：点 <b>Browse Standards</b> 打开全屏浏览器；点卡片选择，<b>Done</b> 回填面板；可再次打开继续编辑。',
-  c:'<b>方案 C · 抽屉加宽分栏</b>：筛选收在搜索框内的 <b>Filters</b> 下拉里；点 <b>Show details</b> 展开「列表 + 详情」分栏，左侧点行、右侧勾 skills；<b>Hide details</b> 收起后状态同步。'
+  c:'<b>方案 C · 抽屉加宽分栏</b>：默认态筛选收在搜索框右侧的 <b>Filters</b> 下拉里；点 <b>Show details</b> 展开「列表 + 详情」分栏后四个筛选全部平铺；左侧点行、右侧勾 skills，<b>Hide details</b> 收起后状态同步。'
 };
 
 /* ================= backdrop ================= */
