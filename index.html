@@ -199,16 +199,17 @@ main{height:100vh;overflow:auto;background:#F1F2F4;padding:20px}
 .detail-toggle:hover{background:var(--muted)}
 .detail-toggle.active{background:var(--brand-tint);border-color:var(--brand);color:var(--brand)}
 .c-detail .dp-cap{font-size:11px;font-weight:600;letter-spacing:.6px;color:var(--text-2)}
-.split{flex:1;display:flex;gap:16px;min-height:0;margin-top:14px;margin-bottom:20px}
-.c-left{width:352px;flex:none;display:flex;flex-direction:column;min-height:0}
-.c-left .filters-grid{grid-template-columns:1fr 1fr}
-.c-list{flex:1;min-height:0;overflow-y:auto;border:1px solid var(--border);border-radius:8px;margin-top:12px}
+.c-controls{display:flex;gap:8px;margin-top:12px;flex:none}
+.c-controls .search-box{margin-top:0;width:320px;flex:none}
+.c-controls .sel{flex:1}
+.browse-box{flex:1;display:flex;min-height:0;margin-top:12px;margin-bottom:20px;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.c-list{width:352px;flex:none;min-height:0;overflow-y:auto;border-right:1px solid var(--border)}
 .c-row{display:flex;align-items:center;gap:8px;padding:11px 12px;border-bottom:1px solid var(--border);cursor:pointer;background:#fff}
 .c-row:last-child{border-bottom:none}
 .c-row:hover{background:#FAFAFB}
 .c-row.focus{background:var(--brand-tint)}
 .c-row .sub{font-size:12px;color:var(--text-3);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.c-detail{flex:1;border:1px solid var(--border);border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:12px;min-height:0;overflow-y:auto}
+.c-detail{flex:1;padding:20px;display:flex;flex-direction:column;gap:12px;min-height:0;overflow-y:auto;background:#fff}
 .c-detail .bl{display:flex;gap:8px}
 .c-detail .ds{font-size:13.5px;line-height:1.6;color:var(--text-1)}
 .c-detail hr{border:none;border-top:1px solid var(--border)}
@@ -396,20 +397,18 @@ footer{position:fixed;right:16px;bottom:10px;font-size:11px;color:#8b8b98;z-inde
             Hide details
           </button>
         </div>
-        <div class="split" style="margin-top:10px">
-          <div class="c-left">
-            <div class="search-box" style="margin-top:0">
-              <svg width="15" height="15" viewBox="0 0 256 256" fill="currentColor"><path d="M229.7,218.3l-43.3-43.2a92.2,92.2,0,1,0-11.3,11.3l43.2,43.3a8.2,8.2,0,0,0,11.4,0A8.1,8.1,0,0,0,229.7,218.3ZM40,112a72,72,0,1,1,72,72A72.1,72.1,0,0,1,40,112Z"/></svg>
-              <input type="text" placeholder="Search" data-search="c2">
-            </div>
-            <div class="filters-grid" style="margin-top:10px">
-              <div class="sel"><select><option>State</option><option>ACT</option></select></div>
-              <div class="sel"><select><option>Subject</option><option>Computational Thinking</option></select></div>
-              <div class="sel"><select><option>Grade</option><option>6–8</option></select></div>
-              <div class="sel"><select><option>Concept</option><option>Algorithms</option></select></div>
-            </div>
-            <div class="c-list" id="listC2"></div>
+        <div class="c-controls">
+          <div class="search-box">
+            <svg width="15" height="15" viewBox="0 0 256 256" fill="currentColor"><path d="M229.7,218.3l-43.3-43.2a92.2,92.2,0,1,0-11.3,11.3l43.2,43.3a8.2,8.2,0,0,0,11.4,0A8.1,8.1,0,0,0,229.7,218.3ZM40,112a72,72,0,1,1,72,72A72.1,72.1,0,0,1,40,112Z"/></svg>
+            <input type="text" placeholder="Search" data-search="c2">
           </div>
+          <div class="sel"><select><option>State</option><option>ACT</option></select></div>
+          <div class="sel"><select><option>Subject</option><option>Computational Thinking</option></select></div>
+          <div class="sel"><select><option>Grade</option><option>6–8</option></select></div>
+          <div class="sel"><select><option>Concept</option><option>Algorithms</option></select></div>
+        </div>
+        <div class="browse-box">
+          <div class="c-list" id="listC2"></div>
           <div class="c-detail" id="detailC"></div>
         </div>
       </div>
