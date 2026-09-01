@@ -115,7 +115,17 @@ main{height:100vh;overflow:auto;background:#F1F2F4;padding:20px}
 .search-box{position:relative;margin-top:12px;flex:none}
 .search-box input{width:100%;height:38px;border:1px solid var(--border);border-radius:8px;padding:0 12px 0 34px;font-size:13px;outline:none;color:var(--text-1)}
 .search-box input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(116,82,228,.12)}
-.search-box svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:#9CA3AF}
+.search-box > svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:#9CA3AF}
+.search-box.has-filter input{padding-right:110px}
+.sf-btn{position:absolute;right:5px;top:50%;transform:translateY(-50%);height:28px;padding:0 10px;border-radius:6px;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;color:var(--text-2);background:#fff;border:1px solid var(--border);transition:.12s}
+.sf-btn:hover{background:var(--muted)}
+.sf-btn.on{background:var(--brand-tint);border-color:var(--brand);color:var(--brand)}
+.sf-btn .caret{width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin-top:-3px}
+.sf-pop{position:absolute;top:44px;right:0;left:auto;width:300px;background:#fff;border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow-md);padding:16px;z-index:40;display:none}
+.sf-pop.open{display:block}
+.sf-pop .sel{margin-bottom:8px}
+.sf-pop .sel:last-of-type{margin-bottom:10px}
+.sf-pop .foot{display:flex;justify-content:space-between;align-items:center}
 
 .std-list{flex:1;min-height:0;overflow-y:auto;border:1px solid var(--border);border-radius:8px;margin-top:14px;margin-bottom:20px}
 .std-item{padding:13px 14px;border-bottom:1px solid var(--border);display:flex;gap:10px;cursor:pointer;background:#fff;transition:background .12s}
@@ -371,9 +381,21 @@ footer{position:fixed;right:16px;bottom:10px;font-size:11px;color:#8b8b98;z-inde
         </div>
         <div class="seg-tabs"><i class="on">Standards</i><i>Difficulty</i></div>
         <div class="desc-line">Select standards and skills that align with this question.</div>
-        <div class="search-box">
+        <div class="search-box has-filter">
           <svg width="15" height="15" viewBox="0 0 256 256" fill="currentColor"><path d="M229.7,218.3l-43.3-43.2a92.2,92.2,0,1,0-11.3,11.3l43.2,43.3a8.2,8.2,0,0,0,11.4,0A8.1,8.1,0,0,0,229.7,218.3ZM40,112a72,72,0,1,1,72,72A72.1,72.1,0,0,1,40,112Z"/></svg>
           <input type="text" placeholder="Search" data-search="c1">
+          <button class="sf-btn" type="button">
+            <svg width="12" height="12" viewBox="0 0 256 256" fill="currentColor"><path d="M227.81,66.76l.08-.09A16,16,0,0,0,216,40H40A16,16,0,0,0,28.19,66.76l.08.09L96,139.17V216a16,16,0,0,0,24.87,13.32l32-21.34A16,16,0,0,0,160,194.66V139.17ZM144,139.17v55.49l-32,21.34V139.17L44.69,66.83l-.11-.12H211.42l-.11.12Z"/></svg>
+            Filters
+            <span class="caret"></span>
+          </button>
+          <div class="sf-pop">
+            <div class="sel"><select><option>State</option><option>ACT</option><option>Common Core</option></select></div>
+            <div class="sel"><select><option>Subject</option><option>Computational Thinking</option><option>English</option></select></div>
+            <div class="sel"><select><option>Grade</option><option>3–5</option><option>6–8</option><option>9–12</option></select></div>
+            <div class="sel"><select><option>Concept</option><option>Abstraction</option><option>Algorithms</option></select></div>
+            <div class="foot"><span class="link">Clear all</span><span style="font-size:12px;color:var(--text-2)">下拉浮层，不推列表</span></div>
+          </div>
         </div>
         <div class="list-toolbar">
           <span class="lt-label">16 standards</span>
@@ -391,14 +413,22 @@ footer{position:fixed;right:16px;bottom:10px;font-size:11px;color:#8b8b98;z-inde
           <span class="badge tag-badge-c" style="display:none">1 tagged</span>
         </div>
         <div class="c-controls">
-          <div class="search-box">
+          <div class="search-box has-filter" style="flex:1;width:auto">
             <svg width="15" height="15" viewBox="0 0 256 256" fill="currentColor"><path d="M229.7,218.3l-43.3-43.2a92.2,92.2,0,1,0-11.3,11.3l43.2,43.3a8.2,8.2,0,0,0,11.4,0A8.1,8.1,0,0,0,229.7,218.3ZM40,112a72,72,0,1,1,72,72A72.1,72.1,0,0,1,40,112Z"/></svg>
             <input type="text" placeholder="Search" data-search="c2">
+            <button class="sf-btn" type="button">
+              <svg width="12" height="12" viewBox="0 0 256 256" fill="currentColor"><path d="M227.81,66.76l.08-.09A16,16,0,0,0,216,40H40A16,16,0,0,0,28.19,66.76l.08.09L96,139.17V216a16,16,0,0,0,24.87,13.32l32-21.34A16,16,0,0,0,160,194.66V139.17ZM144,139.17v55.49l-32,21.34V139.17L44.69,66.83l-.11-.12H211.42l-.11.12Z"/></svg>
+              Filters
+              <span class="caret"></span>
+            </button>
+            <div class="sf-pop">
+              <div class="sel"><select><option>State</option><option>ACT</option><option>Common Core</option></select></div>
+              <div class="sel"><select><option>Subject</option><option>Computational Thinking</option><option>English</option></select></div>
+              <div class="sel"><select><option>Grade</option><option>3–5</option><option>6–8</option><option>9–12</option></select></div>
+              <div class="sel"><select><option>Concept</option><option>Abstraction</option><option>Algorithms</option></select></div>
+              <div class="foot"><span class="link">Clear all</span><span style="font-size:12px;color:var(--text-2)">下拉浮层，不推列表</span></div>
+            </div>
           </div>
-          <div class="sel"><select><option>State</option><option>ACT</option></select></div>
-          <div class="sel"><select><option>Subject</option><option>Computational Thinking</option></select></div>
-          <div class="sel"><select><option>Grade</option><option>6–8</option></select></div>
-          <div class="sel"><select><option>Concept</option><option>Algorithms</option></select></div>
         </div>
         <div class="list-toolbar">
           <span class="lt-label">16 standards · select on the left, review details on the right</span>
@@ -465,7 +495,7 @@ const X_SVG = '<svg width="10" height="10" viewBox="0 0 256 256" fill="currentCo
 const HINTS = {
   a:'<b>方案 A · 滚动折叠吸顶</b>：向下滚动列表 → 头部折叠成摘要条吸顶；点 <b>Filters</b> 展开浮层（不推列表）；滚回顶部恢复。点卡片可勾选。',
   b:'<b>方案 B · 全屏弹窗浏览器</b>：点 <b>Browse Standards</b> 打开全屏浏览器；点卡片选择，<b>Done</b> 回填面板；可再次打开继续编辑。',
-  c:'<b>方案 C · 抽屉加宽分栏</b>：点列表右上角 <b>Show details</b> 展开「列表 + 详情」分栏；左侧点行、右侧勾 skills；<b>Hide details</b> 收起后状态同步。'
+  c:'<b>方案 C · 抽屉加宽分栏</b>：筛选收在搜索框内的 <b>Filters</b> 下拉里；点 <b>Show details</b> 展开「列表 + 详情」分栏，左侧点行、右侧勾 skills；<b>Hide details</b> 收起后状态同步。'
 };
 
 /* ================= backdrop ================= */
@@ -566,6 +596,23 @@ document.getElementById('filtersBtnA').addEventListener('click', e => {
 });
 document.addEventListener('click', e => {
   if (!popoverA.contains(e.target) && e.target.id !== 'filtersBtnA') popoverA.classList.remove('open');
+  document.querySelectorAll('.sf-pop.open').forEach(p => {
+    const box = p.parentElement;
+    if (!box.contains(e.target)) { p.classList.remove('open'); box.querySelector('.sf-btn').classList.remove('on'); }
+  });
+});
+
+/* search-embedded filters dropdown (variant C) */
+document.querySelectorAll('.sf-btn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    const pop = btn.parentElement.querySelector('.sf-pop');
+    document.querySelectorAll('.sf-pop.open').forEach(p => {
+      if (p !== pop) { p.classList.remove('open'); p.parentElement.querySelector('.sf-btn').classList.remove('on'); }
+    });
+    pop.classList.toggle('open');
+    btn.classList.toggle('on', pop.classList.contains('open'));
+  });
 });
 
 /* ================= 方案 B ================= */
